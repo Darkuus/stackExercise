@@ -1,38 +1,98 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
+body{
+    background-color: #262D37;
+    font-family: 'Russo One', sans-serif;
+    margin:0;
+}
+.container{
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+}
+h1{
+    color: white;
+}
+.main-input{
+    font-family: 'Russo One', sans-serif;
+    height: 14rem;
+    width: 90%;
+    border: 5px solid green;
+    border-radius: 40px;
+    font-size: 8rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main-input:focus{
+    outline: none;
+}
+.red{
+    color:red;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+
+
+.deck-container{
+    border: 1px solid white;
+    height: 6rem;
+    width: 6rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.hands-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15rem;
+}
+.left-hand-container{
+    text-align: center;
+    width: 50%;
+    border-right: 1px solid white;
+}
+.right-hand-container{
+    text-align: center;
+    width: 50%;
+    border-left: 1px solid white;
+}
+.list-hand{
+    text-align: center;
+    color: white;
+    list-style: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.list-hand {
+    padding: 0;
 }
-
-.App-link {
-  color: #61dafb;
+.btn{
+    width: 18rem;
+    height: 4rem;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.6rem;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-green{
+    background-color: #38414E;
+    border: 2px solid #59D9A4;
+    font-weight: bold;
+    color:#59D9A4;
+}
+.btn-orange{
+    background-color: #38414E;
+    border: 2px solid #ED6325;
+    font-weight: bold;
+    color: #ED6325;
+}
+h2{
+    color: white;
+}
+p{
+    color: white;
 }
