@@ -8,6 +8,7 @@ const Routes: React.FC = () => (
     <Route>
         <Route component={ Balanced } path="/Balanced" />
         <Route component={ Deck } path="/Deck" />
+        <Route component={ Balanced } path="/" exact/>
     </Route>
 );
 
