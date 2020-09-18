@@ -129,7 +129,8 @@ const Balanced:React.FC = (props) => {
       <h2>{errorMatching ? 'Error: Characters not matching' : ''}</h2>
       <input className="main-input" type="text" onChange={(e) => handleInputChange(e.target.value)}/>
       <div dangerouslySetInnerHTML={{ __html: `<h2>${inputValue}</h2>` }} />
-      <p>Conseguimos fazer o check com as situacoes {'({})'} OU {'(){}'}, nao as duas juntas</p>
+      <p>Conseguimos fazer o check com as situacoes {'({[]})'} OU {'(){}'}, nao as duas juntas</p>
+      <p>Por padrao colocamos a verificacao de {'({[]})'}</p>
       {/* <button className="btn btn-green" onClick={(e) => handleClick()}>Check Values</button> */}
     </div>
   );
