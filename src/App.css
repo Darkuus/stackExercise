@@ -6,6 +6,7 @@ body{
     margin:0;
 }
 .container{
+    color: white;
     height: 100vh;
     box-sizing: border-box;
     display: flex;
@@ -19,11 +20,9 @@ h1{
 }
 .main-input{
     font-family: 'Russo One', sans-serif;
-    height: 14rem;
     width: 90%;
-    border: 5px solid green;
-    border-radius: 40px;
-    font-size: 8rem;
+    border: 1px solid green;
+    font-size: 3rem;
 }
 
 .main-input:focus{
@@ -32,10 +31,6 @@ h1{
 .red{
     color:red;
 }
-
-
-
-
 .deck-container{
     border: 1px solid white;
     height: 6rem;
@@ -95,4 +90,8 @@ h2{
 }
 p{
     color: white;
+}
+
+.mt-2{
+    margin-top: 2em;
 }

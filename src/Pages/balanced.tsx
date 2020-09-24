@@ -1,139 +1,140 @@
-import { errorMonitor } from 'events';
+import { stat } from 'fs';
 import React, { useState } from 'react';
 
 const Balanced:React.FC = (props) => {
+  const [code, setCode] = useState('')
+  const [validCode, setValidCode] = useState(true)
+  const [firstStack, setFirstStack] = useState<string[]>([])
+  const [secondStack, setSecondStack] = useState<string[]>([])
+  const [thirdStack, setThirdStack] = useState<string[]>([])
+  const [fourthStack, setFourthStack] = useState<string[]>([])
 
-  const [inputValue, setInputValue] = useState<string>(' ')
-  const [errorArray, setErrorArray] = useState<string[]>([])
-  
-  
-  const [errorUnbalanced, setErrorUnbalanced] = useState(false)
-  const [errorMatching, setErrorMatching] = useState(false)
-  var coutPainter = 0
-
-  //arrays to check the matching charact
-  var matchingLeft:string[] = []
-  var matchingRight:string[] = []
-
-
-  const handleInputChange = (value:string) => {
-    setInputValue(value)
-    const stack:string[] = []
-    setErrorUnbalanced(false)
-
-    for (var i = 0; i < inputValue.length; i++) {
-      if((inputValue[i] === ')' || inputValue[i] === '}' || inputValue[i] === ']') && stack.length === 0){
-        setErrorUnbalanced(true)
-        setErrorMatching(true)
-      }
-      else if(inputValue[i] === '(' || inputValue[i] === '{' || inputValue[i] === '['){
-        stack.push(inputValue[i])
-      }
-      else if((inputValue[i] === ')' || inputValue[i] === '}' || inputValue[i] === ']') && stack.length !== 0){
-        stack.pop()
-      }
+  const handleAdd = () => {
+    if(!code){
+      alert('Empty Code')
+      return
     }
-    if(stack.length !== 0){
-      setErrorUnbalanced(true)
-    }
-
-    setErrorMatching(false)
-    for (var i = 0; i < inputValue.length; i++) {
-      if(inputValue[i] === '(' || inputValue[i] === '{' || inputValue[i] === '['){
-        matchingLeft.push(inputValue[i])
-      }
-      else if(inputValue[i] === ')' || inputValue[i] === '}' || inputValue[i] === ']'){
-        matchingRight.unshift(inputValue[i])
-      }
-    }
-
-    if(matchingLeft.length === matchingRight.length){
-      for(var i = 0; i < matchingLeft.length; i++) {
-        if(matchingLeft[i] === '(' && matchingRight[i ] !== ')'){
-          setErrorMatching(true)
+    else{
+      firstStack.map(e => {
+        if(e === code){
+          setValidCode(false)
+          return
         }
-        else if(matchingLeft[i] === '{' && matchingRight[i] !== '}'){
-          setErrorMatching(true)
+      })
+      secondStack.map(e => {
+        if(e === code){
+          setValidCode(false)
+          return
         }
-        else if(matchingLeft[i] === '[' && matchingRight[i] !== ']'){
-          setErrorMatching(true)
+      })
+      thirdStack.map(e => {
+        if(e === code){
+          setValidCode(false)
+          return
         }
+      })
+      fourthStack.map(e => {
+        if(e === code){
+          setValidCode(false)
+          return
+        }
+      })
 
-        // if(matchingLeft[i] === '(' && matchingRight[matchingRight.length - i - 1 ] !== ')'){
-        //   console.log('erro',errorMatching)
-        //   setErrorMatching(false)
-        // }
-        // else if(matchingLeft[i] === '{' && matchingRight[matchingRight.length - i - 1 ] !== '}'){
-        //   console.log('erro',errorMatching)
-        //   setErrorMatching(false)
-        // }
-        // else if(matchingLeft[i] === '[' && matchingRight[matchingRight.length - i - 1 ] !== ']'){
-        //   console.log('erro',errorMatching)
-        //   setErrorMatching(false)
-        // }
+      if(!validCode){
+        alert('Code already exist')
+        setValidCode(true)
+        return
       }
-      console.log(matchingLeft)
-      console.log(matchingRight)
+      else{
+        if(firstStack.length < 3){
+          var stack = firstStack
+          stack.push(code)
+          setFirstStack(stack)
+          return
+        }
+        else if(secondStack.length < 3){
+          var stack = secondStack
+          stack.push(code)
+          setSecondStack(stack)
+        }
+        else if(thirdStack.length < 3){
+          var stack = thirdStack
+          stack.push(code)
+          setThirdStack(stack)
+          return
+        }
+        else if(fourthStack.length < 3){
+          var stack = fourthStack 
+          stack.push(code)
+          setFourthStack(stack)
+          return
+        }
+        else{
+          alert('The Docks`re full, try again later')
+          return
+        }
+      }
     }
   }
-// const handleInputChange = (value:string) => {
-//   setInputValue(value)
 
-//   const string = value.substr(value.length - 1)
-//   const newArray = stringArray
-//   const errorArrayCopy = errorArray
-  
-//   var indexLastRight = 0
-//   for (var i = 0; i < inputValue.length; i++) {
-    
-//     if(inputValue.charAt(i) === '('){
-//       for (var j = inputValue.length; j > i; j--) {
-//         if(inputValue.charAt(j) === ')'){
-//           setBalanced('Balanced')
-//           indexLastRight = j
-//           break
-//         }
-//         else{
-//           setBalanced('Not Balanced')
-//         }
-//       }        
-//     }
-//     else if(inputValue.charAt(i) === ')' && i != indexLastRight){
-//       setBalanced('Not Balanced')
-//     }
-//     console.log(balanced)
-//     newArray.push(string)
-//     setStringArray(newArray)
-//   }
+  const handleRemove = () => {
+    firstStack.map((e,index) => {
+      if(e === code){
+        var stack = firstStack
+        stack.splice(index,1)
+        alert(`${e} removed`)
+        return
+      }
+    })
+    secondStack.map((e,index) => {
+      if(e === code){
+        var stack = secondStack
+        stack.splice(index,1)
+        alert(`${e} removed`)
+        return
+      }
+    })
+    thirdStack.map((e,index) => {
+      if(e === code){
+        var stack = thirdStack
+        stack.splice(index,1)
+        alert(`${e} removed`)
+        return
+      }
+    })
+    fourthStack.map((e,index) => {
+      if(e === code){
+        var stack = fourthStack
+        stack.splice(index,1)
+        alert(`${e} removed`)
+        return
+      }
+    })
 
-  const handleClick = () => {
-    if(errorArray.length > 0)
-      alert('Not Balanced :(')
-    else
-      alert('Balenced!')
-  }
-
-  const replaceString = (inputString:string,text:string, newText:string, index:number) => {
-    var t=0;   
-    inputString = inputString.replace(/text/g, function (match) {
-      t++;
-      return (t === index) ? newText : match;
-    });
-    return inputString
+    alert('The code doesn`t exist in none of the Docks')
   }
 
   return (
-    <div className="App container">
-      <h1>Type something</h1>
-      <h2>{errorUnbalanced ? 'Error: Not balanced' : ''}</h2>
-      <h2>{errorMatching ? 'Error: Characters not matching' : ''}</h2>
-      <input className="main-input" type="text" onChange={(e) => handleInputChange(e.target.value)}/>
-      <div dangerouslySetInnerHTML={{ __html: `<h2>${inputValue}</h2>` }} />
-      <p>Conseguimos fazer o check com as situacoes {'({[]})'} OU {'(){}'}, nao as duas juntas</p>
-      <p>Por padrao colocamos a verificacao de {'({[]})'}</p>
-      {/* <button className="btn btn-green" onClick={(e) => handleClick()}>Check Values</button> */}
-    </div>
-  );
+    <>
+      <div className="container">
+
+        <h5>Add Code</h5>
+        <input value={code} type="text" onChange={(e) => setCode(e.target.value)} />
+        <button className="btn btn-green mt-2" onClick={handleAdd}>Add Code</button>
+        <button className="btn btn-orange mt-2"  onClick={handleRemove}>Remove Code</button>
+
+        <h5>First Stack</h5>
+        <input className="main-input" value={firstStack} type="text"/>
+        <h5>Second Stack</h5>
+        <input className="main-input" value={secondStack} type="text"/>
+        <h5>Third Stack</h5>
+        <input className="main-input" value={thirdStack} type="text"/>
+        <h5>Fourth Stack</h5>
+        <input className="main-input" value={fourthStack} type="text"/>
+      </div>
+
+    </>
+  )
 }
 
 export default Balanced;
