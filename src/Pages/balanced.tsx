@@ -78,12 +78,13 @@ const Balanced:React.FC = (props) => {
   }
 
   const handleRemove = () => {
+    var isEmpty = true
     firstStack.map((e,index) => {
       if(e === code){
         var stack = firstStack
         stack.splice(index,1)
         alert(`${e} removed`)
-        return
+        isEmpty = false
       }
     })
     secondStack.map((e,index) => {
@@ -91,7 +92,7 @@ const Balanced:React.FC = (props) => {
         var stack = secondStack
         stack.splice(index,1)
         alert(`${e} removed`)
-        return
+        isEmpty = false
       }
     })
     thirdStack.map((e,index) => {
@@ -99,7 +100,7 @@ const Balanced:React.FC = (props) => {
         var stack = thirdStack
         stack.splice(index,1)
         alert(`${e} removed`)
-        return
+        isEmpty = false
       }
     })
     fourthStack.map((e,index) => {
@@ -107,16 +108,16 @@ const Balanced:React.FC = (props) => {
         var stack = fourthStack
         stack.splice(index,1)
         alert(`${e} removed`)
-        return
+        isEmpty = false
       }
     })
-
-    alert('The code doesn`t exist in none of the Docks')
+    if(isEmpty)
+      alert('The code doesn`t exist in none of the Docks')
   }
 
   return (
     <>
-      <div className="container">
+      <div className="container">git init
 
         <h5>Add Code</h5>
         <input value={code} type="text" onChange={(e) => setCode(e.target.value)} />
